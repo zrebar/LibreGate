@@ -1,6 +1,6 @@
 # LibreGate: Free & Open Source VPN Client for VPN Gate
 
-<img src=./icon.png width="50">
+<img src=./icon.png width="50" alt="Free & Open Source VPN Gate (VPNGate) Client for Linux & macOS">
 
 ## Overview
 
@@ -17,7 +17,8 @@ VPN Gate project is developed by the University of Tsukuba, Japan.
 ## Screenshots
 
 ![Screenshot 1](./assets/LibreGate-VPN-Linux.png "Linux VPN Client for VPN Gate")
-![Screenshot 2](path/to/screenshot2.png)
+
+[//]: # (![Screenshot 2]&#40;path/to/screenshot2.png&#41;)
 
 ## Usage
 
