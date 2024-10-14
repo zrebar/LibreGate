@@ -2,11 +2,16 @@
 
 <img src=./icon.png width="50" alt="Free & Open Source VPN Gate (VPNGate) Client for Linux & macOS">
 
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Go Report Card](https://goreportcard.com/badge/github.com/zrebar/LibreGate)](https://goreportcard.com/report/github.com/zrebar/LibreGate)
+![GitHub release](https://img.shields.io/github/v/release/zrebar/LibreGate)
+
 ## Overview
 
-LibreGate is a free and open-source VPN client for **Linux** designed to work seamlessly with VPN Gate . It provides a user-friendly interface to connect to VPN servers, ensuring your online privacy and security.
-VPN Gate is a free public VPN relay service that allows users to connect to thousands of VPN servers worldwide. LibreGate simplifies the process of connecting to these servers by providing an easy-to-use interface and automating the connection process. 
-VPN Gate project is developed by the University of Tsukuba, Japan.
+LibreGate is a free, open-source VPN client for Linux, designed to work with VPN Gate. It offers a simple interface to connect to VPN servers, enhancing online privacy and security. VPN Gate, developed by the University of Tsukuba, Japan, provides access to thousands of public VPN servers globally. LibreGate streamlines the connection process with its user-friendly design.
+
+
 ## Features
 
 - **Easy-to-use Interface**: Simple and intuitive GUI built with Fyne.
@@ -46,7 +51,7 @@ VPN Gate project is developed by the University of Tsukuba, Japan.
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/zrebar/libregate.git
+    git clone https://github.com/zrebar/LibreGate.git
     cd libregate
     ```
 
