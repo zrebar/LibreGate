@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 )
 
 type Connector struct {
@@ -29,12 +30,29 @@ func (c *Connector) Connect(server VPNServer) error {
 		return fmt.Errorf("failed to write OpenVPN config: %v", err)
 	}
 
-	// Command to execute OpenVPN in a new terminal window and keep it open
-	c.cmd = exec.Command("gnome-terminal", "--", "bash", "-c", fmt.Sprintf("sudo %s --config %s; exec bash", c.vpnCommand, filePath))
-	c.cmd.Stdout = os.Stdout
-	c.cmd.Stderr = os.Stderr
-	fmt.Println(c.cmd.String())
-	return c.cmd.Start()
+	// Determine the command based on the operating system
+	var cmd *exec.Cmd
+	switch runtime.GOOS {
+	case "darwin":
+		// macOS command to open a new Terminal window and run OpenVPN
+		cmd = exec.Command("osascript", "-e", fmt.Sprintf(`tell application "Terminal" to do script "sudo %s --config %s"`, c.vpnCommand, filePath))
+	case "linux":
+		// Linux command to open a new terminal window and run OpenVPN
+		cmd = exec.Command("gnome-terminal", "--", "bash", "-c", fmt.Sprintf("sudo %s --config %s; exec bash", c.vpnCommand, filePath))
+	case "windows":
+		// Windows command to open a new Command Prompt window and run OpenVPN
+		cmd = exec.Command("cmd", "/C", fmt.Sprintf("start cmd /K \"sudo %s --config %s\"", c.vpnCommand, filePath))
+	case "freebsd", "openbsd":
+		// FreeBSD and OpenBSD command to open a new terminal window and run OpenVPN
+		cmd = exec.Command("xterm", "-e", fmt.Sprintf("sudo %s --config %s", c.vpnCommand, filePath))
+	default:
+		return fmt.Errorf("unsupported operating system: %s", runtime.GOOS)
+	}
+
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	fmt.Println(cmd.String())
+	return cmd.Start()
 }
 
 func (c *Connector) Disconnect() error {
